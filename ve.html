@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GibiTèo - Về Bé</title>
+  <style>
+    :root {
+      --bg: #f4f0fa;
+      --bg-2: #e6def3;
+      --ink: #2e1f47;
+      --muted: #685685;
+      --primary: #8a5af3;
+      --secondary: #c77dff;
+      --accent: #ffd166;
+      --card: rgba(255, 255, 255, 0.78);
+      --shadow: 0 18px 40px rgba(46, 31, 71, 0.12);
+      --pixel: 0 0 0 2px rgba(46, 31, 71, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Verdana", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255, 209, 102, 0.25), transparent 28%),
+        radial-gradient(circle at top right, rgba(138, 90, 243, 0.22), transparent 24%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 18px;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,0.5);
+      border: 2px solid rgba(46,31,71,0.08);
+      border-radius: 22px;
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      font-size: 1.05rem;
+    }
+
+    .brand a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a {
+      color: inherit;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .nav a:hover, .nav a.active {
+      background: rgba(255,255,255,0.8);
+      color: var(--ink);
+    }
+
+    .panel {
+      background: var(--card);
+      border: 2px solid rgba(46,31,71,0.08);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      margin-top: 18px;
+    }
+
+    .article {
+      padding: 34px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: 2.8rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin: 28px 0 14px;
+      font-size: 1.8rem;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin: 0 0 16px;
+    }
+
+    .detail-card {
+      padding: 24px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.6);
+      border: 2px solid rgba(46,31,71,0.06);
+      margin-top: 20px;
+    }
+
+    .specs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .specs-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(46,31,71,0.1);
+      font-size: 1rem;
+    }
+
+    .specs-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .specs-list strong {
+      color: var(--ink);
+    }
+
+    .specs-list span {
+      color: var(--muted);
+    }
+
+    .sidebar {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Pixel heart style */
+    .pixel-heart-container {
+      margin: 40px 0;
+    }
+
+    .pixel-heart {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      animation: pulse 1.4s infinite ease-in-out;
+    }
+    
+    .pixel-heart::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 8px;
+      height: 8px;
+      background: #b5179e;
+      box-shadow:
+        8px 0 #b5179e, 16px 0 #b5179e, 32px 0 #b5179e, 40px 0 #b5179e,
+        0 8px #b5179e, 8px 8px #b5179e, 16px 8px #b5179e, 24px 8px #b5179e, 32px 8px #b5179e, 40px 8px #b5179e, 48px 8px #b5179e,
+        0 16px #b5179e, 8px 16px #b5179e, 16px 16px #b5179e, 24px 16px #b5179e, 32px 16px #b5179e, 40px 16px #b5179e, 48px 16px #b5179e,
+        8px 24px #b5179e, 16px 24px #b5179e, 24px 24px #b5179e, 32px 24px #b5179e, 40px 24px #b5179e,
+        16px 32px #b5179e, 24px 32px #b5179e, 32px 32px #b5179e,
+        24px 40px #b5179e;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    .footer {
+      margin-top: 22px;
+      padding: 18px 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 800px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar panel">
+      <div class="brand"><a href="gibiteo.html">GibiTèo Pixel Club</a></div>
+      <nav class="nav">
+        <a href="gibiteo.html">Trang chủ</a>
+        <a class="active" href="ve.html">Về bé</a>
+        <a href="tinh-cach.html">Tính cách</a>
+        <a href="cham-soc.html">Chăm sóc</a>
+      </nav>
+    </header>
+
+    <main class="content-grid">
+      <section class="article panel">
+        <h1>Tiểu sử về GibiTèo 🐾</h1>
+        <p>
+          GibiTèo không chỉ đơn thuần là một chú mèo pixel thông thường. Bé được sinh ra từ những dòng code ngọt ngào trong một đêm trăng thanh mát, nơi các điểm ảnh (pixels) kết hợp lại để tạo ra sinh vật đáng yêu nhất quả đất.
+        </p>
+        <p>
+          Với bộ lông màu tím sữa (lilac) vô cùng cá tính và đôi tai vểnh tinh nghịch, GibiTèo mang sứ mệnh tối cao: xua tan mọi mỏi mệt của bạn sau những giờ làm việc, học tập căng thẳng bằng vẻ đẹp retro chibi của mình.
+        </p>
+
+        <h2>Nguồn gốc tên gọi</h2>
+        <p>
+          "Gibi" được lấy cảm hứng từ chữ <strong>Chibi</strong> (phong cách vẽ nhân vật nhỏ bé, dễ thương của Nhật Bản) kết hợp với <strong>Giga</strong> (biểu thị thế giới số). Còn "Tèo" là một cái tên rất đỗi mộc mạc, gần gũi ở Việt Nam. Sự kết hợp này mang lại sự giao thoa hài hòa giữa công nghệ hiện đại và sự thân thương giản dị.
+        </p>
+
+        <div class="detail-card">
+          <h3>Hồ sơ lý lịch trích ngang:</h3>
+          <ul class="specs-list">
+            <li><strong>Biệt danh:</strong> <span>Tèo Tím Sữa</span></li>
+            <li><strong>Cân nặng:</strong> <span>3 pixel cơm / ngày</span></li>
+            <li><strong>Chiều cao:</strong> <span>4 block tai mèo</span></li>
+            <li><strong>Sở thích:</strong> <span>Ăn bánh cá ảo, ngủ nướng góc màn hình, trèo lên bàn phím</span></li>
+            <li><strong>Kỹ năng đặc biệt:</strong> <span>Làm tan chảy trái tim trong 0.5 giây</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sidebar panel">
+        <h3>GibiTèo Love Meter</h3>
+        <div class="pixel-heart-container">
+          <div class="pixel-heart"></div>
+        </div>
+        <p>GibiTèo yêu bạn bằng cả tấm lòng pixel 8-bit!</p>
+        <p style="font-size: 0.9rem; font-style: italic;">
+          "Mỗi một điểm ảnh là một nhịp đập tràn đầy tình yêu thương gửi đến bạn."
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer panel">
+      GibiTèo Pixel Club - một trang web thú cưng dễ thương, mềm mại và có chút nghịch ngợm.
+    </footer>
+  </div>
+</body>
+</html>

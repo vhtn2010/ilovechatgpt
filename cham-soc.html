@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GibiTèo - Chăm Sóc</title>
+  <style>
+    :root {
+      --bg: #f4f0fa;
+      --bg-2: #e6def3;
+      --ink: #2e1f47;
+      --muted: #685685;
+      --primary: #8a5af3;
+      --secondary: #c77dff;
+      --accent: #ffd166;
+      --card: rgba(255, 255, 255, 0.78);
+      --shadow: 0 18px 40px rgba(46, 31, 71, 0.12);
+      --pixel: 0 0 0 2px rgba(46, 31, 71, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Verdana", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255, 209, 102, 0.25), transparent 28%),
+        radial-gradient(circle at top right, rgba(138, 90, 243, 0.22), transparent 24%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 18px;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,0.5);
+      border: 2px solid rgba(46,31,71,0.08);
+      border-radius: 22px;
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      font-size: 1.05rem;
+    }
+
+    .brand a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a {
+      color: inherit;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .nav a:hover, .nav a.active {
+      background: rgba(255,255,255,0.8);
+      color: var(--ink);
+    }
+
+    .panel {
+      background: var(--card);
+      border: 2px solid rgba(46,31,71,0.08);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      margin-top: 18px;
+      align-items: stretch;
+    }
+
+    .controls-panel {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .speech-bubble {
+      position: relative;
+      background: #ffffff;
+      border: 3px solid var(--ink);
+      border-radius: 20px;
+      padding: 18px 24px;
+      margin-bottom: 28px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 8px 0 rgba(46, 31, 71, 0.08);
+    }
+
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 15px 15px 0;
+      border-style: solid;
+      border-color: #ffffff transparent;
+      display: block;
+      width: 0;
+    }
+
+    .speech-bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -19px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 16px 16px 0;
+      border-style: solid;
+      border-color: var(--ink) transparent;
+      display: block;
+      width: 0;
+      z-index: -1;
+    }
+
+    .stats-container {
+      margin-bottom: 30px;
+    }
+
+    .stat-row {
+      margin-bottom: 18px;
+    }
+
+    .stat-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .progress-bg {
+      height: 18px;
+      background: rgba(46, 31, 71, 0.08);
+      border-radius: 99px;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 50%;
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+
+    #hunger-bar { background: #ffd166; }
+    #happiness-bar { background: #b5179e; }
+    #energy-bar { background: #85d2f2; }
+
+    .actions-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .btn-care {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 3px solid var(--ink);
+      background: white;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 6px 0 var(--ink);
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .btn-care:active {
+      transform: translateY(6px);
+      box-shadow: 0 0 0 var(--ink);
+    }
+
+    .btn-care .btn-icon {
+      font-size: 1.8rem;
+    }
+
+    /* Mèo pixel và màn chơi */
+    .pet-stage {
+      min-height: 480px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .halo {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 104, 200, 0.4), rgba(255,255,255,0));
+      filter: blur(2px);
+    }
+
+    .pet {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      transform: translateY(-4px);
+      animation: float 3.4s ease-in-out infinite;
+      image-rendering: pixelated;
+    }
+
+    .pet .head,
+    .pet .body,
+    .pet .ear,
+    .pet .eye,
+    .pet .cheek,
+    .pet .mouth,
+    .pet .paw,
+    .pet .tail {
+      position: absolute;
+      border-radius: 10px;
+    }
+
+    .pet .body {
+      left: 34px;
+      top: 68px;
+      width: 112px;
+      height: 92px;
+      background: #e8dbff;
+      border: 4px solid #4a3668;
+      border-bottom-width: 7px;
+      box-shadow: inset -10px -10px 0 rgba(138, 90, 243, 0.12);
+    }
+
+    .pet .head {
+      left: 30px;
+      top: 14px;
+      width: 120px;
+      height: 100px;
+      background: #e8dbff;
+      border: 4px solid #4a3668;
+      box-shadow: inset -10px -10px 0 rgba(138, 90, 243, 0.12);
+    }
+
+    .pet .ear {
+      width: 36px;
+      height: 46px;
+      background: #d8c7ff;
+      border: 4px solid #4a3668;
+      top: 0;
+    }
+
+    .pet .ear.left { left: 40px; transform: rotate(-18deg); }
+    .pet .ear.right { left: 104px; transform: rotate(18deg); }
+
+    .pet .eye {
+      width: 12px;
+      height: 16px;
+      background: #2e1f47;
+      top: 48px;
+    }
+    .pet .eye.left { left: 58px; }
+    .pet .eye.right { left: 110px; }
+
+    .pet .cheek {
+      width: 16px;
+      height: 10px;
+      background: rgba(244, 143, 177, 0.6);
+      top: 66px;
+      border-radius: 999px;
+      filter: blur(0.2px);
+    }
+    .pet .cheek.left { left: 44px; }
+    .pet .cheek.right { left: 120px; }
+
+    .pet .mouth {
+      left: 82px;
+      top: 62px;
+      width: 12px;
+      height: 8px;
+      border-bottom: 4px solid #2e1f47;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .pet .paw {
+      width: 26px;
+      height: 28px;
+      background: #e1d5ff;
+      border: 4px solid #4a3668;
+      top: 138px;
+    }
+    .pet .paw.left { left: 50px; }
+    .pet .paw.right { left: 104px; }
+
+    .pet .tail {
+      right: 8px;
+      top: 92px;
+      width: 54px;
+      height: 20px;
+      border: 4px solid #4a3668;
+      border-left: 0;
+      background: #e5d8ff;
+      border-radius: 0 999px 999px 0;
+      transform: rotate(22deg);
+      transform-origin: left center;
+      animation: wag 1.2s ease-in-out infinite;
+    }
+
+    /* Floating emojis animation */
+    .floating-emoji {
+      position: absolute;
+      font-size: 2.2rem;
+      pointer-events: none;
+      animation: floatUp 1.2s ease-out forwards;
+      z-index: 10;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translate(-50%, -50%) translateY(20px) scale(0.6);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) translateY(-80px) scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes wag {
+      0%, 100% { transform: rotate(22deg); }
+      50% { transform: rotate(34deg); }
+    }
+
+    .footer {
+      margin-top: 22px;
+      padding: 18px 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 850px) {
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+      .pet-stage {
+        min-height: 380px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar panel">
+      <div class="brand"><a href="gibiteo.html">GibiTèo Pixel Club</a></div>
+      <nav class="nav">
+        <a href="gibiteo.html">Trang chủ</a>
+        <a href="ve.html">Về bé</a>
+        <a href="tinh-cach.html">Tính cách</a>
+        <a class="active" href="cham-soc.html">Chăm sóc</a>
+      </nav>
+    </header>
+
+    <main class="game-grid">
+      <section class="controls-panel panel">
+        <div>
+          <div class="speech-bubble" id="dialogue">
+            Ngoàm ngoàm... Chào bạn! Cùng chơi với Tèo nhé! 🐾
+          </div>
+
+          <div class="stats-container">
+            <div class="stat-row">
+              <div class="stat-label">
+                <span>🍖 No bụng</span>
+                <span id="hunger-pct">50%</span>
+              </div>
+              <div class="progress-bg">
+                <div class="progress-bar" id="hunger-bar"></div>
+              </div>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-label">
+                <span>💖 Hạnh phúc</span>
+                <span id="happiness-pct">50%</span>
+              </div>
+              <div class="progress-bg">
+                <div class="progress-bar" id="happiness-bar"></div>
+              </div>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-label">
+                <span>⚡ Năng lượng</span>
+                <span id="energy-pct">50%</span>
+              </div>
+              <div class="progress-bg">
+                <div class="progress-bar" id="energy-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions-container">
+          <button class="btn-care" onclick="careAction('feed')">
+            <span class="btn-icon">🍖</span>
+            <span>Cho ăn</span>
+          </button>
+          <button class="btn-care" onclick="careAction('pet')">
+            <span class="btn-icon">💖</span>
+            <span>Vuốt ve</span>
+          </button>
+          <button class="btn-care" onclick="careAction('sleep')">
+            <span class="btn-icon">😴</span>
+            <span>Ru ngủ</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="pet-stage panel" id="stage">
+        <div class="halo"></div>
+        <div class="pet" role="img" aria-label="Mèo chibi pixel màu tím sữa đáng yêu">
+          <div class="ear left"></div>
+          <div class="ear right"></div>
+          <div class="head"></div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="cheek left"></div>
+          <div class="cheek right"></div>
+          <div class="mouth"></div>
+          <div class="body"></div>
+          <div class="paw left"></div>
+          <div class="paw right"></div>
+          <div class="tail"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer panel">
+      GibiTèo Pixel Club - một trang web thú cưng dễ thương, mềm mại và có chút nghịch ngợm.
+    </footer>
+  </div>
+
+  <script>
+    let hunger = 50;
+    let happiness = 50;
+    let energy = 50;
+
+    const dialogueText = {
+      feed: [
+        "Măm măm... ngon tuyệt cú mèo! 🍖",
+        "Ngoàm ngoàm... Tèo no căng rún rồi! 🐟",
+        "Thức ăn này xịn ghê á bạn ơi! ✨"
+      ],
+      pet: [
+        "Purr purr... Đã ngứa quá đi! 🥰",
+        "Tèo thích được cưng nựng nhất! 💖",
+        "Meo meo... Thêm chút nữa đi bạn!"
+      ],
+      sleep: [
+        "Khò khò... zZZ Mơ thấy bánh cá... 😴",
+        "Chúc bạn ngủ ngon nhé... zZZ",
+        "Năng lượng đang được sạc đầy 100%..."
+      ],
+      status: {
+        starving: "Tèo đói quá, cho Tèo ăn bánh cá đi mà... 🥺",
+        sad: "Hơi buồn một chút... Vuốt ve Tèo đi... 😿",
+        tired: "Ngáp... Tèo hết pin rồi, ru ngủ Tèo đi... 🥱"
+      }
+    };
+
+    function updateBars() {
+      // Clamp values
+      hunger = Math.max(0, Math.min(100, hunger));
+      happiness = Math.max(0, Math.min(100, happiness));
+      energy = Math.max(0, Math.min(100, energy));
+
+      // Update bars
+      document.getElementById('hunger-bar').style.width = hunger + '%';
+      document.getElementById('hunger-pct').innerText = hunger + '%';
+
+      document.getElementById('happiness-bar').style.width = happiness + '%';
+      document.getElementById('happiness-pct').innerText = happiness + '%';
+
+      document.getElementById('energy-bar').style.width = energy + '%';
+      document.getElementById('energy-pct').innerText = energy + '%';
+    }
+
+    function spawnEmoji(emoji) {
+      const stage = document.getElementById('stage');
+      const floater = document.createElement('div');
+      floater.className = 'floating-emoji';
+      floater.innerText = emoji;
+      
+      // Random position around center
+      const randomOffset = () => (Math.random() - 0.5) * 120;
+      floater.style.left = `calc(50% + ${randomOffset()}px)`;
+      floater.style.top = `calc(50% + ${randomOffset()}px)`;
+      
+      stage.appendChild(floater);
+      
+      setTimeout(() => {
+        floater.remove();
+      }, 1200);
+    }
+
+    function careAction(action) {
+      let speech = "";
+      const randIdx = Math.floor(Math.random() * 3);
+
+      if (action === 'feed') {
+        hunger += 18;
+        happiness += 6;
+        energy -= 3;
+        speech = dialogueText.feed[randIdx];
+        spawnEmoji('🍗');
+      } else if (action === 'pet') {
+        happiness += 18;
+        hunger -= 4;
+        energy -= 2;
+        speech = dialogueText.pet[randIdx];
+        spawnEmoji('💖');
+      } else if (action === 'sleep') {
+        energy += 30;
+        hunger -= 12;
+        happiness += 8;
+        speech = dialogueText.sleep[randIdx];
+        spawnEmoji('💤');
+      }
+
+      updateBars();
+
+      // Check urgent statuses first
+      if (hunger < 20) {
+        speech = dialogueText.status.starving;
+      } else if (energy < 20) {
+        speech = dialogueText.status.tired;
+      } else if (happiness < 20) {
+        speech = dialogueText.status.sad;
+      }
+
+      document.getElementById('dialogue').innerText = speech;
+    }
+
+    // Initialize bars
+    updateBars();
+  </script>
+</body>
+</html>

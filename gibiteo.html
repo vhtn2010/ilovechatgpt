@@ -13,8 +13,6 @@
       --panel: rgba(255, 255, 255, 0.72);
       --shadow: 0 16px 0 rgba(88, 54, 43, 0.12);
       --pink: #ff7d9d;
-      --gold: #ffd66b;
-      --mint: #8fd8cd;
       --line: #4a352d;
     }
 
@@ -114,7 +112,6 @@
       width: 120px;
       height: 120px;
       background: radial-gradient(circle, rgba(255,125,157,0.16), transparent 68%);
-      image-rendering: pixelated;
     }
 
     .hero-copy::before { right: -30px; top: -22px; }
@@ -165,6 +162,10 @@
       cursor: pointer;
       transition: transform 0.15s ease, filter 0.15s ease;
       box-shadow: 0 5px 0 rgba(88, 54, 43, 0.14);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .btn:hover { transform: translateY(-2px); }
@@ -254,9 +255,7 @@
     .body,
     .arm,
     .leg,
-    .food,
-    .spark,
-    .blink {
+    .food {
       position: absolute;
     }
 
@@ -417,30 +416,6 @@
       pointer-events: none;
     }
 
-    .spark {
-      left: 50%;
-      bottom: 88px;
-      width: 14px;
-      height: 14px;
-      background: #ff7d9d;
-      transform: translateX(-50%) rotate(-45deg);
-      opacity: 0;
-      border-radius: 4px 4px 0 4px;
-      z-index: 6;
-    }
-
-    .spark::before,
-    .spark::after {
-      content: "";
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      background: inherit;
-      border-radius: 50%;
-    }
-    .spark::before { top: -7px; left: 0; }
-    .spark::after { left: 7px; top: 0; }
-
     .heart-fx {
       position: absolute;
       left: 50%;
@@ -555,6 +530,7 @@
       border-radius: 3px 3px 0 3px;
       animation: driftUp 1.45s ease-out forwards;
     }
+
     .float-heart::before,
     .float-heart::after {
       content: "";
@@ -645,7 +621,7 @@
     </header>
 
     <main class="hero">
-      <section class="hero-copy">
+      <section class="hero-copy" id="ve">
         <span class="eyebrow">✨ Pixel anime chibi - cute tối đa</span>
         <h1>Cho bé ăn để thấy cả bầu trời tim hồng.</h1>
         <p class="lead">
