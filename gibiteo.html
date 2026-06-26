@@ -6,16 +6,16 @@
   <title>GibiTèo - Thú cưng pixel chibi</title>
   <style>
     :root {
-      --bg: #fff7ef;
-      --bg-2: #ffe8d7;
-      --ink: #3d2c28;
-      --muted: #7e635a;
-      --primary: #ff7f7f;
-      --secondary: #8fd3c8;
+      --bg: #f4f0fa;
+      --bg-2: #e6def3;
+      --ink: #2e1f47;
+      --muted: #685685;
+      --primary: #8a5af3;
+      --secondary: #c77dff;
       --accent: #ffd166;
       --card: rgba(255, 255, 255, 0.78);
-      --shadow: 0 18px 40px rgba(114, 74, 59, 0.14);
-      --pixel: 0 0 0 2px rgba(61, 44, 40, 0.08);
+      --shadow: 0 18px 40px rgba(46, 31, 71, 0.12);
+      --pixel: 0 0 0 2px rgba(46, 31, 71, 0.08);
     }
 
     * { box-sizing: border-box; }
@@ -25,8 +25,8 @@
       font-family: "Trebuchet MS", "Verdana", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255, 209, 102, 0.35), transparent 28%),
-        radial-gradient(circle at top right, rgba(143, 211, 200, 0.28), transparent 24%),
+        radial-gradient(circle at top left, rgba(255, 209, 102, 0.25), transparent 28%),
+        radial-gradient(circle at top right, rgba(138, 90, 243, 0.22), transparent 24%),
         linear-gradient(180deg, var(--bg), var(--bg-2));
       min-height: 100vh;
       overflow-x: hidden;
@@ -46,7 +46,7 @@
       padding: 12px 18px;
       margin-bottom: 24px;
       background: rgba(255,255,255,0.5);
-      border: 2px solid rgba(61,44,40,0.08);
+      border: 2px solid rgba(46,31,71,0.08);
       border-radius: 22px;
       backdrop-filter: blur(8px);
       box-shadow: var(--shadow);
@@ -88,7 +88,7 @@
 
     .panel {
       background: var(--card);
-      border: 2px solid rgba(61,44,40,0.08);
+      border: 2px solid rgba(46,31,71,0.08);
       border-radius: 30px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
@@ -106,7 +106,7 @@
       inset: auto -60px -80px auto;
       width: 220px;
       height: 220px;
-      background: radial-gradient(circle, rgba(255,127,127,0.16), transparent 70%);
+      background: radial-gradient(circle, rgba(138, 90, 243, 0.15), transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -117,8 +117,8 @@
       align-items: center;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(143, 211, 200, 0.2);
-      color: #215d57;
+      background: rgba(138, 90, 243, 0.12);
+      color: #6236ff;
       font-weight: 700;
       font-size: 0.92rem;
     }
@@ -163,14 +163,14 @@
 
     .btn.primary {
       color: white;
-      background: linear-gradient(135deg, var(--primary), #ff5d87);
-      box-shadow: 0 12px 24px rgba(255, 93, 135, 0.28);
+      background: linear-gradient(135deg, var(--primary), #b5179e);
+      box-shadow: 0 12px 24px rgba(138, 90, 243, 0.35);
     }
 
     .btn.secondary {
       color: var(--ink);
       background: rgba(255,255,255,0.84);
-      border: 2px solid rgba(61,44,40,0.08);
+      border: 2px solid rgba(46,31,71,0.08);
     }
 
     .stats {
@@ -184,7 +184,7 @@
       padding: 16px;
       border-radius: 20px;
       background: rgba(255,255,255,0.72);
-      border: 2px solid rgba(61,44,40,0.06);
+      border: 2px solid rgba(46,31,71,0.06);
     }
 
     .stat strong {
@@ -207,7 +207,7 @@
       width: 340px;
       height: 340px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,209,102,0.5), rgba(255,255,255,0));
+      background: radial-gradient(circle, rgba(186, 104, 200, 0.4), rgba(255,255,255,0));
       filter: blur(2px);
     }
 
@@ -237,10 +237,10 @@
       top: 68px;
       width: 112px;
       height: 92px;
-      background: #ffdcbf;
-      border: 4px solid #5c3d33;
+      background: #e8dbff;
+      border: 4px solid #4a3668;
       border-bottom-width: 7px;
-      box-shadow: inset -10px -10px 0 rgba(255, 170, 120, 0.18);
+      box-shadow: inset -10px -10px 0 rgba(138, 90, 243, 0.12);
     }
 
     .pet .head {
@@ -248,16 +248,16 @@
       top: 14px;
       width: 120px;
       height: 100px;
-      background: #ffdcbf;
-      border: 4px solid #5c3d33;
-      box-shadow: inset -10px -10px 0 rgba(255, 170, 120, 0.18);
+      background: #e8dbff;
+      border: 4px solid #4a3668;
+      box-shadow: inset -10px -10px 0 rgba(138, 90, 243, 0.12);
     }
 
     .pet .ear {
       width: 36px;
       height: 46px;
-      background: #ffc6aa;
-      border: 4px solid #5c3d33;
+      background: #d8c7ff;
+      border: 4px solid #4a3668;
       top: 0;
     }
 
@@ -267,7 +267,7 @@
     .pet .eye {
       width: 12px;
       height: 16px;
-      background: #2d201c;
+      background: #2e1f47;
       top: 48px;
     }
     .pet .eye.left { left: 58px; }
@@ -276,7 +276,7 @@
     .pet .cheek {
       width: 16px;
       height: 10px;
-      background: rgba(255, 123, 123, 0.45);
+      background: rgba(244, 143, 177, 0.6);
       top: 66px;
       border-radius: 999px;
       filter: blur(0.2px);
@@ -289,15 +289,15 @@
       top: 62px;
       width: 12px;
       height: 8px;
-      border-bottom: 4px solid #2d201c;
+      border-bottom: 4px solid #2e1f47;
       border-radius: 0 0 12px 12px;
     }
 
     .pet .paw {
       width: 26px;
       height: 28px;
-      background: #ffd0b6;
-      border: 4px solid #5c3d33;
+      background: #e1d5ff;
+      border: 4px solid #4a3668;
       top: 138px;
     }
     .pet .paw.left { left: 50px; }
@@ -308,9 +308,9 @@
       top: 92px;
       width: 54px;
       height: 20px;
-      border: 4px solid #5c3d33;
+      border: 4px solid #4a3668;
       border-left: 0;
-      background: #ffcfae;
+      background: #e5d8ff;
       border-radius: 0 999px 999px 0;
       transform: rotate(22deg);
       transform-origin: left center;
@@ -329,7 +329,7 @@
       height: 18px;
       border-radius: 5px;
       background: rgba(255,255,255,0.75);
-      border: 2px solid rgba(61,44,40,0.08);
+      border: 2px solid rgba(46,31,71,0.08);
       animation: drift 7s linear infinite;
     }
 
@@ -349,8 +349,8 @@
       padding: 22px;
       border-radius: 24px;
       background: rgba(255,255,255,0.78);
-      border: 2px solid rgba(61,44,40,0.06);
-      box-shadow: 0 10px 24px rgba(114, 74, 59, 0.08);
+      border: 2px solid rgba(46,31,71,0.06);
+      box-shadow: 0 10px 24px rgba(46, 31, 71, 0.07);
     }
 
     .card h3 {
@@ -365,7 +365,7 @@
       display: grid;
       place-items: center;
       font-size: 1.4rem;
-      background: rgba(255, 209, 102, 0.35);
+      background: rgba(138, 90, 243, 0.18);
     }
 
     .card p {
@@ -427,11 +427,12 @@
 <body>
   <div class="wrap">
     <header class="topbar panel">
-      <div class="brand">GibiTèo Pixel Club</div>
+      <div class="brand"><a href="gibiteo.html" style="text-decoration: none; color: inherit;">GibiTèo Pixel Club</a></div>
       <nav class="nav">
-        <a href="#ve">Về bé</a>
-        <a href="#tinh-cach">Tính cách</a>
-        <a href="#cham-soc">Chăm sóc</a>
+        <a href="gibiteo.html">Trang chủ</a>
+        <a href="ve.html">Về bé</a>
+        <a href="tinh-cach.html">Tính cách</a>
+        <a href="cham-soc.html">Chăm sóc</a>
       </nav>
     </header>
 
@@ -446,8 +447,8 @@
         </p>
 
         <div class="actions">
-          <a class="btn primary" href="#cham-soc">Xem chăm sóc</a>
-          <a class="btn secondary" href="#tinh-cach">Khám phá tính cách</a>
+          <a class="btn primary" href="cham-soc.html">Xem chăm sóc</a>
+          <a class="btn secondary" href="tinh-cach.html">Khám phá tính cách</a>
         </div>
 
         <div class="stats">
@@ -474,7 +475,7 @@
           <div class="bubble"></div>
           <div class="bubble"></div>
         </div>
-        <div class="pet" role="img" aria-label="Mèo chibi pixel màu kem đáng yêu">
+        <div class="pet" role="img" aria-label="Mèo chibi pixel màu tím sữa đáng yêu">
           <div class="ear left"></div>
           <div class="ear right"></div>
           <div class="head"></div>

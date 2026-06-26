@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GibiTèo - Tính Cách</title>
+  <style>
+    :root {
+      --bg: #f4f0fa;
+      --bg-2: #e6def3;
+      --ink: #2e1f47;
+      --muted: #685685;
+      --primary: #8a5af3;
+      --secondary: #c77dff;
+      --accent: #ffd166;
+      --card: rgba(255, 255, 255, 0.78);
+      --shadow: 0 18px 40px rgba(46, 31, 71, 0.12);
+      --pixel: 0 0 0 2px rgba(46, 31, 71, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Verdana", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255, 209, 102, 0.25), transparent 28%),
+        radial-gradient(circle at top right, rgba(138, 90, 243, 0.22), transparent 24%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 18px;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,0.5);
+      border: 2px solid rgba(46,31,71,0.08);
+      border-radius: 22px;
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      font-size: 1.05rem;
+    }
+
+    .brand a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a {
+      color: inherit;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .nav a:hover, .nav a.active {
+      background: rgba(255,255,255,0.8);
+      color: var(--ink);
+    }
+
+    .panel {
+      background: var(--card);
+      border: 2px solid rgba(46,31,71,0.08);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .header-section {
+      text-align: center;
+      padding: 40px 20px;
+      margin-bottom: 24px;
+    }
+
+    .header-section h1 {
+      margin: 0 0 12px;
+      font-size: 2.8rem;
+      letter-spacing: -0.03em;
+    }
+
+    .header-section p {
+      max-width: 60ch;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.78);
+      border: 2px solid rgba(46,31,71,0.06);
+      box-shadow: 0 10px 24px rgba(46, 31, 71, 0.07);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(46, 31, 71, 0.1);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      background: rgba(138, 90, 243, 0.18);
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      color: var(--ink);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    .footer {
+      margin-top: 22px;
+      padding: 18px 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar panel">
+      <div class="brand"><a href="gibiteo.html">GibiTèo Pixel Club</a></div>
+      <nav class="nav">
+        <a href="gibiteo.html">Trang chủ</a>
+        <a href="ve.html">Về bé</a>
+        <a class="active" href="tinh-cach.html">Tính cách</a>
+        <a href="cham-soc.html">Chăm sóc</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="header-section panel">
+        <h1>Tính cách của GibiTèo ✨</h1>
+        <p>
+          Mặc dù là sinh vật 8-bit, GibiTèo sở hữu tâm hồn vô cùng phong phú và có nhiều nét tính cách đáng yêu (đôi khi cực kỳ tinh nghịch) có thể khiến bạn vui vẻ cả ngày.
+        </p>
+      </section>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon">🤗</div>
+          <h3>Siêu dính người (Clingy)</h3>
+          <p>
+            GibiTèo không thích ở một mình. Bé luôn muốn bám sát bạn 24/7. Dù bạn đang gõ code hay xem phim, bé sẽ tìm cách nhảy lên màn hình hoặc trèo lên bàn phím nằm ngủ để đòi bạn chú ý.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🌸</div>
+          <h3>Dịu dàng & Ngoan ngoãn</h3>
+          <p>
+            Bé vô cùng hiểu chuyện. Khi thấy bạn bận rộn, bé sẽ chỉ im lặng cuộn tròn thành một cục tím sữa tròn xoe bên cạnh chuột máy tính, phát ra tiếng kêu "purr purr" nhẹ nhàng để tiếp thêm năng lượng cho bạn.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">⚡</div>
+          <h3>Nghịch ngợm ngầm</h3>
+          <p>
+            Thỉnh thoảng, dòng code nghịch ngợm bên trong trỗi dậy! GibiTèo sẽ gạt các bong bóng nước hoặc lén giấu chiếc tất ảo của bạn vào góc màn hình. Nhưng với khuôn mặt chibi dễ thương kia thì ai mà giận cho được?
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🐟</div>
+          <h3>Thần ăn (Foodie)</h3>
+          <p>
+            Tình yêu lớn thứ hai của GibiTèo chính là thức ăn. Chỉ cần bạn phát ra tiếng "click" vào gói bánh cá hoặc tiếng mở bát ăn, bé sẽ dịch chuyển tức thời đến trước mặt bạn với đôi mắt lấp lánh như sao.
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="footer panel">
+      GibiTèo Pixel Club - một trang web thú cưng dễ thương, mềm mại và có chút nghịch ngợm.
+    </footer>
+  </div>
+</body>
+</html>
